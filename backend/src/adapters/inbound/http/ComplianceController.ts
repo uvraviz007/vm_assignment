@@ -64,8 +64,6 @@ router.get('/banking/records', async (req: Request, res: Response) => {
     res.status(500).json({ error: (error as Error).message });
   }
 });
-
-
 router.post('/banking/bank', async (req: Request, res: Response) => {
   try {
     const { shipId, year } = req.body;
