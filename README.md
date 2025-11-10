@@ -109,28 +109,7 @@ npm test
 | POST   | `/routes/:id/baseline` | Set a route as baseline            |
 | GET    | `/routes/comparison`   | Compare baseline with other routes |
 
-**Example Request: Create Route**
 
-```
-POST /routes
-Content-Type: application/json
-```
-
-```json
-{
-  "route_id": "R3000",
-  "year": 2025,
-  "ghg_intensity": 94.5,
-  "is_baseline": true,
-  "vesselType": "Container Ship",
-  "fuelType": "HFO",
-  "fuelConsumption": 5300,
-  "distance": 13500,
-  "totalEmissions": 16500
-}
-```
-
----
 
 ### Compliance
 
@@ -141,12 +120,6 @@ Content-Type: application/json
 
 **Example URL**
 
-```
-GET /compliance/cb?shipId=S1001&year=2025
-```
-
----
-
 ### Banking
 
 | Method | Endpoint           | Description                        |
@@ -155,34 +128,12 @@ GET /compliance/cb?shipId=S1001&year=2025
 | POST   | `/banking/bank`    | Bank positive CB                   |
 | POST   | `/banking/apply`   | Apply banked surplus               |
 
-**Example Request**
-
-```json
-{
-  "shipId": "S1001",
-  "year": 2025,
-  "amount": 500
-}
-```
-
----
-
 ### Pooling
 
 | Method | Endpoint | Description                                     |
 | ------ | -------- | ----------------------------------------------- |
 | POST   | `/pools` | Create a pool of ships, validate CB allocations |
 
-**Request Body Example**
-
-```json
-{
-  "shipIds": ["S1001", "S1002"],
-  "year": 2025
-}
-```
-
----
 
 ## Sample Responses / Screenshots
 
@@ -195,7 +146,7 @@ GET /compliance/cb?shipId=S1001&year=2025
 ![](images/get-route.png)
 ![](images/get-route-comparison.png)
 ![](images/get-route-comparison-2.png)
-![](images/post-ba nking-apply.png)
+![](images/post-banking-apply.png)
 ![](images/post-pools-1.png)
 ![](images/post-pools-2.png)
 ![](images/post-route-baseline.png)
