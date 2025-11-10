@@ -5,6 +5,7 @@ async function main() {
   console.log('Start seeding...');
 
   // --- 1. CLEAR ALL DATA ---
+  // We must delete in the correct order
   await prisma.poolMember.deleteMany();
   await prisma.pool.deleteMany();
   await prisma.bankEntry.deleteMany();
@@ -13,79 +14,65 @@ async function main() {
 
   console.log('Old data cleared.');
 
-  // --- 2. CREATE ROUTES ---
-
-  // Create one baseline route
   await prisma.route.create({
     data: {
-      route_id: 'R2000',
+      route_id: 'R1000',
       year: 2025,
-      ghg_intensity: 95.0,
+      ghg_intensity: 91.16,
       is_baseline: true,
       vesselType: 'Container Ship',
       fuelType: 'HFO',
-      fuelConsumption: 5200,
-      distance: 13000,
-      totalEmissions: 16000,
+      fuelConsumption: 5000,
+      distance: 12000,
+      totalEmissions: 15500,
     },
   });
 
   // Create other comparison routes
   const routesData = [
     {
-      route_id: 'R2001', // Efficient ship
+      route_id: 'R1001',
       year: 2025,
-      ghg_intensity: 90.2,
+      ghg_intensity: 88.5,
       is_baseline: false,
       vesselType: 'Container Ship',
       fuelType: 'LNG',
-      fuelConsumption: 5000,
-      distance: 12500,
-      totalEmissions: 14500,
+      fuelConsumption: 4800,
+      distance: 12000,
+      totalEmissions: 14000,
     },
     {
-      route_id: 'R2002', // Bulk cargo ship
+      route_id: 'R1002',
       year: 2025,
-      ghg_intensity: 97.8,
+      ghg_intensity: 92.3,
       is_baseline: false,
       vesselType: 'Bulker',
       fuelType: 'MGO',
-      fuelConsumption: 6200,
-      distance: 11000,
-      totalEmissions: 17500,
+      fuelConsumption: 600,
+      distance: 10000,
+      totalEmissions: 1800,
     },
     {
-      route_id: 'R2003', // Tanker
+      route_id: 'R1003',
       year: 2024,
-      ghg_intensity: 93.5,
+      ghg_intensity: 91.8,
       is_baseline: false,
       vesselType: 'Tanker',
       fuelType: 'HFO',
-      fuelConsumption: 7100,
+      fuelConsumption: 7000,
       distance: 15000,
-      totalEmissions: 21500,
+      totalEmissions: 21000,
     },
     {
-      route_id: 'R2004', // Methanol-powered
+      route_id: 'R1004',
       year: 2025,
-      ghg_intensity: 89.7,
+      ghg_intensity: 89.1,
       is_baseline: false,
       vesselType: 'Tanker',
       fuelType: 'Methanol',
-      fuelConsumption: 6700,
+      fuelConsumption: 6500,
       distance: 14000,
-      totalEmissions: 17200,
-    },
-    {
-      route_id: 'R2005', // LNG bulker
-      year: 2025,
-      ghg_intensity: 91.3,
-      is_baseline: false,
-      vesselType: 'Bulker',
-      fuelType: 'LNG',
-      fuelConsumption: 5800,
-      distance: 12000,
-      totalEmissions: 15000,
+      totalEmissions: 17000,
     },
   ];
 

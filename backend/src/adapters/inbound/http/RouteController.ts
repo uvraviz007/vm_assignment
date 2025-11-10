@@ -11,9 +11,11 @@ const getRouteComparisonUseCase = new GetRouteComparisonUseCase(routeRepository)
 // GET /routes
 router.get('/routes', async (req: Request, res: Response) => {
   try {
+    // console.log("request getting");
     const routes = await routeUseCases.getAllRoutes();
     res.status(200).json(routes);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: 'Failed to fetch routes' });
   }
 });
@@ -24,6 +26,7 @@ router.post('/routes/:id/baseline', async (req: Request, res: Response) => {
     const route = await routeRepository.setAsBaseline(id);
     res.status(200).json(route);
   } catch (error) {
+    
     console.error(error);
     res.status(500).json({ error: 'Failed to set baseline' });
   }
