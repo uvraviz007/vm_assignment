@@ -1,5 +1,5 @@
-import { IRouteRepository } from '../ports/RouteRepository';
-import { IComplianceRepository } from '../ports/ComplianceRepository';
+import type { IRouteRepository } from '../ports/RouteRepository';
+import  type { IComplianceRepository } from '../ports/ComplianceRepository';
 import { calculateComplianceBalance } from '../domain/Compliance';
 
 

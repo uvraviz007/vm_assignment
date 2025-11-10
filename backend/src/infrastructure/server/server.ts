@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import routeController from '../../adapters/inbound/http/RouteController';
-import poolController from '../../adapters/inbound/http/PoolController';
-import complianceController from '../../adapters/inbound/http/ComplianceController';
+import routeController from '../../adapters/inbound/http/RouteController.js';
+import poolController from '../../adapters/inbound/http/PoolController.js';
+import complianceController from '../../adapters/inbound/http/ComplianceController.js';
 
 
 dotenv.config();

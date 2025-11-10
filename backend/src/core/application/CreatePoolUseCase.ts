@@ -1,6 +1,6 @@
-import { IComplianceRepository } from '../ports/ComplianceRepository';
-import { IPoolRepository } from '../ports/PoolRepository';
-import { IRouteRepository } from '../ports/RouteRepository'; 
+import type { IComplianceRepository } from '../ports/ComplianceRepository';
+import type { IPoolRepository } from '../ports/PoolRepository';
+import type { IRouteRepository } from '../ports/RouteRepository'; 
 import { allocatePoolSurplus } from '../domain/Pooling';
 import { calculateComplianceBalance } from '../domain/Compliance';
 

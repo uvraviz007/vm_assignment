@@ -1,4 +1,4 @@
-import { IComplianceRepository } from '../../../core/ports/ComplianceRepository';
+import  type { IComplianceRepository } from '../../../core/ports/ComplianceRepository';
 import { ShipCompliance, BankEntry } from '../../../core/domain/Compliance';
 import { prisma } from '../../../infrastructure/db/PrismaClient';
 

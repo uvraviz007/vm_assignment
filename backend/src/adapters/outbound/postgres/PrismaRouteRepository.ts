@@ -1,5 +1,5 @@
-import { IRouteRepository } from '../../../core/ports/RouteRepository';
-import { Route } from '../../../core/domain/route';
+import type { IRouteRepository } from '../../../core/ports/RouteRepository';
+import type { Route } from '../../../core/domain/route';
 import { prisma } from '../../../infrastructure/db/PrismaClient';
 
 export class PrismaRouteRepository implements IRouteRepository {

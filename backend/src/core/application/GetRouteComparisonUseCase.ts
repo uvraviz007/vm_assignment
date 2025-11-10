@@ -1,5 +1,5 @@
-import { IRouteRepository } from '../ports/RouteRepository';
-import { RouteComparison } from '../domain/RouteComparison';
+import type { IRouteRepository } from '../ports/RouteRepository';
+import type { RouteComparison } from '../domain/RouteComparison';
 
 const TARGET_INTENSITY = 89.3368; 
 

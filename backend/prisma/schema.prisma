@@ -37,11 +37,11 @@ model ShipCompliance {
 }
 
 model BankEntry {
-  id           String   @id @default(cuid())
-  ship_id      String
-  year         Int      
+  id            String   @id @default(cuid())
+  ship_id       String
+  year          Int      
   amount_gco2eq Float    
-  createdAt    DateTime @default(now())
+  createdAt     DateTime @default(now())
 }
 
 model Pool {

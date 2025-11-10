@@ -1,7 +1,8 @@
-import { Router, Request, Response } from 'express';
-import { RouteUseCases } from '../../../core/application/RouteUseCases.ts';
-import { PrismaRouteRepository } from '../../outbound/postgres/PrismaRouteRepository';
-import { GetRouteComparisonUseCase } from '../../../core/application/GetRouteComparisonUseCase';
+import  type {  Request, Response } from 'express';
+import express, { Router } from 'express';
+import { RouteUseCases } from '../../../core/application/RouteUseCases.js';
+import { PrismaRouteRepository } from '../../outbound/postgres/PrismaRouteRepository.js';
+import { GetRouteComparisonUseCase } from '../../../core/application/GetRouteComparisonUseCase.js';
 const router = Router();
 
 const routeRepository = new PrismaRouteRepository();

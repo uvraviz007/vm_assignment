@@ -1,4 +1,5 @@
-import { Router, Request, Response } from 'express';
+import  type {  Request, Response } from 'express';
+import express, { Router } from 'express';
 import { PrismaComplianceRepository } from '../../outbound/postgres/PrismaComplianceRepository';
 import { PrismaPoolRepository } from '../../outbound/postgres/PrismaPoolRepository';
 import { PrismaRouteRepository } from '../../outbound/postgres/PrismaRouteRepository'; 
