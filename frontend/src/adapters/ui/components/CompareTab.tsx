@@ -41,7 +41,7 @@ export default function CompareTab() {
 
   const renderContent = () => {
     if (loading) {
-      return <p className="text-gray-400">Loading comparison data...</p>;
+      return <p className="text-green-400">Loading comparison data...</p>;
     }
     if (error) {
       return <p className="text-red-500">{error}</p>;
@@ -57,11 +57,11 @@ export default function CompareTab() {
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-gray-800 p-4 rounded-lg text-center">
             <h4 className="text-sm font-medium text-gray-400 uppercase">Baseline Route</h4>
-            <p className="text-2xl font-semibold">{data.baseline.route_id}</p>
+            <p className="text-2xl font-semibold text-green-400">{data.baseline.route_id}</p>
           </div>
           <div className="bg-gray-800 p-4 rounded-lg text-center">
             <h4 className="text-sm font-medium text-gray-400 uppercase">Baseline Intensity</h4>
-            <p className="text-2xl font-semibold">{data.baseline.ghg_intensity.toFixed(2)}</p>
+            <p className="text-2xl font-semibold text-green-400">{data.baseline.ghg_intensity.toFixed(2)}</p>
           </div>
           <div className="bg-gray-800 p-4 rounded-lg text-center">
             <h4 className="text-sm font-medium text-gray-400 uppercase">2025 Target</h4>
@@ -70,14 +70,14 @@ export default function CompareTab() {
         </div>
 
         {/* Chart */}
-        <div className="bg-gray-800 p-4 rounded-lg h-80">
-          <h3 className="text-lg font-semibold mb-4">GHG Intensity Comparison (gCO₂e/MJ)</h3>
+        <div className="bg-gray-800 p-8 rounded-lg h-80 height-50">
+          <h3 className="text-lg font-semibold mb-4 text-green-400">GHG Intensity Comparison (gCO₂e/MJ)</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} margin={{ top: 0, right: 0, left: -20, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#deecffff" />
               <XAxis dataKey="name" stroke="#9CA3AF" />
               <YAxis stroke="#9CA3AF" />
-              <Tooltip contentStyle={{ backgroundColor: '#1F2937', borderColor: '#4B5563' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#f0f6feff', borderColor: '#4B5563' }} />
               <Legend wrapperStyle={{ color: '#9CA3AF' }} />
               <Bar dataKey="GHG Intensity" fill="#3B82F6" />
               <Bar dataKey="Baseline" fill="#EF4444" />
@@ -88,7 +88,7 @@ export default function CompareTab() {
 
         {/* Table */}
         <div className="bg-gray-800 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold mb-4">Comparison Details</h3>
+          <h3 className="text-lg font-semibold mb-4 text-green-400">Comparison Details</h3>
           <table className="min-w-full divide-y divide-gray-700">
             <thead className="bg-gray-700">
               <tr>
@@ -101,12 +101,12 @@ export default function CompareTab() {
             <tbody className="bg-gray-800 divide-y divide-gray-700">
               {data.comparisons.map(route => (
                 <tr key={route.id} className="hover:bg-gray-700">
-                  <td className="px-4 py-3 text-sm">{route.route_id}</td>
-                  <td className="px-4 py-3 text-sm">{route.ghg_intensity.toFixed(2)}</td>
+                  <td className="px-4 py-3 text-sm text-green-400">{route.route_id}</td>
+                  <td className="px-4 py-3 text-sm text-green-400">{route.ghg_intensity.toFixed(2)}</td>
                   <td className={`px-4 py-3 text-sm font-medium ${route.percentDiff > 0 ? 'text-red-400' : 'text-green-400'}`}>
                     {route.percentDiff.toFixed(2)}%
                   </td>
-                  <td className="px-4 py-3 text-sm text-center">
+                  <td className="px-4 py-3 text-sm text-center text-green-400">
                     {route.compliant ? '✅' : '❌'}
                   </td>
                 </tr>

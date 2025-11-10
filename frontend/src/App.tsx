@@ -28,32 +28,42 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
-      <h1 className="text-3xl font-bold mb-6">FuelEU Maritime Dashboard</h1>
+  <div className="min-h-screen bg-gradient-to-b from-gray-500 to-gray-900 text-gray-900 py-10 flex flex-col items-center">
+    <div className="w-full max-w-6xl px-4">
 
-      {/* Tab Navigation */}
-      <div className="flex border-b border-gray-700 mb-6">
+      <h1 className="text-4xl font-extrabold text-center mb-10 text-green-400">
+        FuelEU Maritime Dashboard
+      </h1>
+
+      {/* Tabs */}
+      <div className="flex justify-center flex-wrap gap-4 mb-10">
         {(['Routes', 'Compare', 'Banking', 'Pooling'] as Tab[]).map((tab) => (
           <button
             key={tab}
-            className={`py-2 px-4 font-medium transition-colors duration-150 ${
-              activeTab === tab
-                ? 'border-b-2 border-blue-500 text-blue-400'
-                : 'text-gray-400 hover:text-gray-200 border-b-2 border-transparent'
-            }`}
             onClick={() => setActiveTab(tab)}
+            className={`
+              px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md
+              border border-teal-300 backdrop-blur-sm
+              ${activeTab === tab
+                ? 'bg-teal-600 text-white scale-105 shadow-lg shadow-teal-300/50'
+                : 'bg-white hover:bg-teal-100 hover:scale-105 hover:shadow-lg text-teal-700'}
+            `}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      {/* Tab Content */}
-      <div className="mt-6">
+      {/* Content Box */}
+      <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-teal-200">
         {renderTabContent()}
       </div>
+
     </div>
-  );
+  </div>
+);
+
+
 }
 
 export default App;

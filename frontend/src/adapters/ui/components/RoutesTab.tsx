@@ -5,8 +5,9 @@ export default function RoutesTab() {
 
   const renderContent = () => {
     if (loading) {
-      return <p className="text-gray-400 animate-pulse">Loading routes...</p>;
+      return <p className="text-green-300 animate-pulse">Loading routes...</p>;
     }
+
     if (error) {
       return (
         <p className="bg-red-900/40 border border-red-700/40 text-red-300 p-3 rounded-lg">
@@ -14,62 +15,80 @@ export default function RoutesTab() {
         </p>
       );
     }
+
     if (routes.length === 0) {
-      return <p className="text-gray-400">No routes found or matching filters.</p>;
+      return <p className="text-green-300">No routes found or matching filters.</p>;
     }
 
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-700">
+        <table className="min-w-full divide-y divide-green-700/40">
+
           {/* Header */}
-          <thead className="bg-white/10 text-gray-300 text-xs uppercase tracking-wide">
+          <thead className="bg-gray-900 text-gray-500 text-xs uppercase tracking-wide border-b border-green-700/40">
             <tr>
-              <th className="px-4 py-2 text-left">Route ID</th>
-              <th className="px-4 py-2 text-center">Baseline</th>
-              <th className="px-4 py-2 text-left">Vessel Type</th>
-              <th className="px-4 py-2 text-left">Fuel Type</th>
-              <th className="px-4 py-2 text-left">Year</th>
-              <th className="px-4 py-2 text-left">GHG (gCO₂e/MJ)</th>
-              <th className="px-4 py-2 text-left">Fuel (t)</th>
-              <th className="px-4 py-2 text-left">Distance (km)</th>
-              <th className="px-4 py-2 text-left">Total Em. (t)</th>
-              <th className="px-4 py-2 text-left">Action</th>
+              {[
+                "Route ID", "Baseline", "Vessel Type", "Fuel Type", "Year",
+                "GHG (gCO₂e/MJ)", "Fuel (t)", "Distance (km)", "Total Em. (t)", "Action"
+              ].map((head) => (
+                <th key={head} className="px-4 py-2 text-left">
+                  {head}
+                </th>
+              ))}
             </tr>
           </thead>
 
           {/* Body */}
-          <tbody className="divide-y divide-gray-800">
+          <tbody className="divide-y divide-green-700/40">
             {routes.map((route) => (
               <tr
                 key={route.id}
-                className="hover:bg-white/10 transition-colors cursor-pointer"
+                className="hover:bg-gray-800/50 transition-colors cursor-pointer"
               >
-                <td className="px-4 py-3">{route.route_id}</td>
-                <td className="px-4 py-3 text-center text-lg">
+                <td className="px-4 py-3 text-green-300">{route.route_id}</td>
+
+                <td className="px-4 py-3 text-center text-lg text-green-400">
                   {route.is_baseline ? "✅" : ""}
                 </td>
-                <td className="px-4 py-3">{route.vesselType}</td>
-                <td className="px-4 py-3">{route.fuelType}</td>
-                <td className="px-4 py-3">{route.year}</td>
-                <td className="px-4 py-3">{route.ghg_intensity.toFixed(2)}</td>
-                <td className="px-4 py-3">{route.fuelConsumption.toLocaleString()}</td>
-                <td className="px-4 py-3">{route.distance.toLocaleString()}</td>
-                <td className="px-4 py-3">{route.totalEmissions.toLocaleString()}</td>
+
+                <td className="px-4 py-3 text-green-300">{route.vesselType}</td>
+                <td className="px-4 py-3 text-green-300">{route.fuelType}</td>
+                <td className="px-4 py-3 text-green-300">{route.year}</td>
+
+                <td className="px-4 py-3 text-green-300">
+                  {route.ghg_intensity.toFixed(2)}
+                </td>
+
+                <td className="px-4 py-3 text-green-300">
+                  {route.fuelConsumption.toLocaleString()}
+                </td>
+
+                <td className="px-4 py-3 text-green-300">
+                  {route.distance.toLocaleString()}
+                </td>
+
+                <td className="px-4 py-3 text-green-300">
+                  {route.totalEmissions.toLocaleString()}
+                </td>
 
                 <td className="px-4 py-3">
                   <button
                     onClick={() => handleSetBaseline(route.route_id)}
                     disabled={route.is_baseline}
-                    className="bg-indigo-600 text-white px-3 py-1.5 rounded-md text-xs font-medium
-                               shadow hover:bg-indigo-500 hover:shadow-lg transition-all
-                               disabled:bg-gray-600 disabled:cursor-not-allowed"
+                    className="
+                      bg-green-700 text-white px-3 py-1.5 rounded-md text-xs font-medium
+                      shadow hover:bg-green-600 hover:shadow-lg transition-all
+                      disabled:bg-gray-600 disabled:cursor-not-allowed
+                    "
                   >
                     Set Baseline
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     );
@@ -77,58 +96,65 @@ export default function RoutesTab() {
 
   return (
     <div className="flex flex-col gap-8 px-2 md:px-4">
+
       {/* Filters */}
-      <div className="bg-white/5 border border-white/10 p-6 rounded-xl shadow-md flex flex-wrap gap-4 items-end">
+      <div className="bg-gray-900 border border-green-700/40 p-6 rounded-xl shadow-md flex flex-wrap gap-4 items-end">
+        
+        {/* Vessel Type */}
         <div className="flex flex-col">
-          <label className="text-xs text-gray-400 mb-1 font-medium">
-            Vessel Type
-          </label>
+          <label className="text-xs text-green-300 mb-1 font-medium">Vessel Type</label>
           <input
             type="text"
             name="vesselType"
             placeholder="e.g. Cargo"
             value={filters.vesselType}
             onChange={handleFilterChange}
-            className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm
-                       text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            className="
+              bg-gray-800 border border-green-700/40 rounded-lg px-3 py-2 text-sm text-green-200
+              focus:outline-none focus:ring-2 focus:ring-green-500 transition
+            "
           />
         </div>
 
+        {/* Fuel Type */}
         <div className="flex flex-col">
-          <label className="text-xs text-gray-400 mb-1 font-medium">
-            Fuel Type
-          </label>
+          <label className="text-xs text-green-300 mb-1 font-medium">Fuel Type</label>
           <input
             type="text"
             name="fuelType"
             placeholder="e.g. Diesel"
             value={filters.fuelType}
             onChange={handleFilterChange}
-            className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm
-                       text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            className="
+              bg-gray-800 border border-green-700/40 rounded-lg px-3 py-2 text-sm text-green-200
+              focus:outline-none focus:ring-2 focus:ring-green-500 transition
+            "
           />
         </div>
 
+        {/* Year */}
         <div className="flex flex-col">
-          <label className="text-xs text-gray-400 mb-1 font-medium">
-            Year
-          </label>
+          <label className="text-xs text-green-300 mb-1 font-medium">Year</label>
           <input
             type="text"
             name="year"
             placeholder="e.g. 2025"
             value={filters.year}
             onChange={handleFilterChange}
-            className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm
-                       text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            className="
+              bg-gray-800 border border-green-700/40 rounded-lg px-3 py-2 text-sm text-green-200
+              focus:outline-none focus:ring-2 focus:ring-green-500 transition
+            "
           />
         </div>
+
       </div>
 
-      {/* Table Wrapper */}
-      <div className="bg-white/5 border border-white/10 p-6 rounded-xl shadow-md">
+      {/* Table */}
+      <div className="bg-gray-900 border border-green-700/40 p-6 rounded-xl shadow-md">
         {renderContent()}
       </div>
+      
     </div>
   );
 }
